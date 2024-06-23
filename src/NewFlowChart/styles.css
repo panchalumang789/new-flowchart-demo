@@ -1,0 +1,26 @@
+.react-flow .react-flow__node {
+    height: 40px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-width: 1px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.react-flow .react-flow__edge path,
+.react-flow__connectionline path {
+    stroke-width: 1.5;
+}
+
+.wrapper {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.react-flow__controls {
+    top: 0;
+    display: flex;
+    height: fit-content;
+}
