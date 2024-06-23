@@ -53,7 +53,7 @@ const AddUserDialog = ({ userData, isModalOpen, closeModal, submitData }) => {
     },
     [submitData, userFormData, validateLoginForm]
   );
-  console.log("userData", userData)
+
   return (
     <Dialog open={isModalOpen} onClose={closeModal}>
       <DialogTitle>{userData?.predecessorId ? "Add" : "Edit"} User</DialogTitle>

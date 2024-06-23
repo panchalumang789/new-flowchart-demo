@@ -15,22 +15,29 @@ import {
   Select,
 } from "@mui/material";
 
-import './styles.css';
+import "./styles.css";
 import "reactflow/dist/style.css";
 import { getLayoutedElements } from "./utils.jsx";
 import AddUserDialog from "./components/AddUserDialog/index.jsx";
-import { logoutUser, selectActiveUser } from "../_features/account/accountSlice.js";
+import {
+  logoutUser,
+  selectActiveUser,
+} from "../_features/account/accountSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import LoginDialog from "./components/LoginDialog/index.jsx";
-import { activateLoading, createUser, deActivateLoading, getAllUserData, getAllUsers, getUsersStatus, updateUser } from "../_features/users/usersSlice.js";
+import {
+  activateLoading,
+  createUser,
+  deActivateLoading,
+  getAllUserData,
+  getAllUsers,
+  getUsersStatus,
+  updateUser,
+} from "../_features/users/usersSlice.js";
 import { LoadingStatus } from "../_features/AsyncStatus.js";
 
-
-
 const NewFlowChart = () => {
-  const dispatch = useDispatch()
-  // const [nodes, setNodes, onNodesChange] = useNodesState();
-  // const [edges, setEdges, onEdgesChange] = useEdgesState();
+  const dispatch = useDispatch();
   const [nodes, setNodes] = useNodesState();
   const [edges, setEdges] = useEdgesState();
 
@@ -52,12 +59,14 @@ const NewFlowChart = () => {
   }, [dispatch, usersStatus]);
 
   useEffect(() => {
-    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(usersData, selectedLanguage);
-    setNodes(layoutedNodes)
-    setEdges(layoutedEdges)
+    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+      usersData,
+      selectedLanguage
+    );
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [usersData, selectedLanguage]);
-
 
   const closeAddNewModal = () => {
     setOpenAddNewModal(false);
@@ -88,8 +97,8 @@ const NewFlowChart = () => {
         })
       );
     }
-    setOpenAddNewModal(false)
-  }
+    setOpenAddNewModal(false);
+  };
 
   // const getAllIncomers = (node, elements) => {
   //   return getIncomers(node, elements).reduce(
@@ -151,13 +160,12 @@ const NewFlowChart = () => {
   //   }
   // }
 
-
   return (
-    <div style={{ height: "100vh", position: 'relative' }}>
+    <div style={{ height: "100vh", position: "relative" }}>
       <Box
         position="absolute"
         width="fit-content"
-        right='0'
+        right="0"
         padding="10px"
         display="flex"
         gap="10px"
@@ -205,13 +213,13 @@ const NewFlowChart = () => {
           zoom={true}
           fitView
           fitViewOptions={{ padding: 2 }}
-          minZoom={0.25}
+          minZoom={0.1}
           maxZoom={2}
           // nodeOrigin={[0.5, 0]}
           onNodeClick={(event, element) => {
             if (activeUser?.role) {
               setUserModalData({ predecessorId: +element.id });
-              setOpenAddNewModal(true)
+              setOpenAddNewModal(true);
             }
           }}
         >
@@ -219,9 +227,16 @@ const NewFlowChart = () => {
           <Background />
         </ReactFlow>
       </ReactFlowProvider>
-      <div style={{ position: 'absolute', right: 0, bottom: 0, height: '1rem', width: '3.5rem', backgroundColor: '#fff' }}>
-
-      </div>
+      <div
+        style={{
+          position: "absolute",
+          right: 0,
+          bottom: 0,
+          height: "1rem",
+          width: "3.5rem",
+          backgroundColor: "#fff",
+        }}
+      ></div>
       <AddUserDialog
         userData={userModalData}
         isModalOpen={openAddNewModal}
