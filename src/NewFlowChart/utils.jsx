@@ -10,7 +10,7 @@ export const getLayoutedElements = (userData, language, direction = "TB") => {
   const nodes = [];
   const edges = [];
 
-  userData.forEach((x) => {
+  userData?.forEach((x) => {
     if (language === "english") {
       nodes.push({
         id: x.id + "",
@@ -29,9 +29,11 @@ export const getLayoutedElements = (userData, language, direction = "TB") => {
         type: x.type,
       });
     }
-    x.successors.forEach((a) => {
-      edges.push({ source: x.id + "", target: a });
-    });
+    if (Array.isArray(x.successors)) {
+      x.successors?.forEach((a) => {
+        edges.push({ source: x.id + "", target: a });
+      });
+    }
   });
 
   const findRelationalNodes = (connectors, activeNodeId, relational = []) => {
