@@ -31,7 +31,7 @@ export const getLayoutedElements = (userData, language, direction = "TB") => {
     }
     if (Array.isArray(x.successors)) {
       x.successors?.forEach((a) => {
-        edges.push({ source: x.id + "", target: a });
+        edges.push({ source: x.id + "", target: a + "" });
       });
     }
   });
