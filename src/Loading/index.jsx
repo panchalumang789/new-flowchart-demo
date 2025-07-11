@@ -1,4 +1,3 @@
-import React from "react";
 import { getLoadingStatus } from "../_features/users/usersSlice";
 import { useSelector } from "react-redux";
 
